@@ -1,8 +1,8 @@
 # DigitalWatch
-* 개발 기간 : 2021.04 ~ 2021.06 (3개월) 
-* 개발 인원 : 5 명
+* 개발 기간 : 2020.09 ~ 2021.11  
+* 개발 인원 : 4 
 * 개발 환경 : AVR Studio 4 (Win AVR Compiler)
-* 개발 언어 : C++
+* 개발 언어 : C
 * 개발 목표  
   * 차량은
   * 차량은 
@@ -11,7 +11,7 @@
 <br/> <br/>
 
 ## Microcontroller
-<a href="#"><img src="https://github.com/hmh2683/CarryingVehicleSystem/blob/main/image/mcu.png" width="400px" height="300px"></a> 
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/mcu.png" width="400px" height="300px"></a> 
 * Board : M128RS1
 * Core : AVR ATmega128 
 * Clock : 16MHz
