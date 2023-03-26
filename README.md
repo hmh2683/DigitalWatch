@@ -29,8 +29,11 @@
 
 ## Code Review
 ### Main
-* ADC Interrupt를 통해 온도값을 얻습니다.
-* key_input() 함수에서 스위치 값을 얻고
+* 스위치에 따라 연/월/일, 시:분:초를 증가시키고, 경과일(totaldays)과 경과시간(total_sec)을 반환합니다.  
+* 경과일과 경과시간에서 연/월/일, 요일, 시:분:초 데이터를 추출합니다 
+* 모드 상태에 따라 연/월/일, 요일, 시:분:초, 온도 등을 string1, string2 배열 안에 저장합니다.
+* lcd.h 포함하고 관련 함수를 사용하여 string1, string2를 LCD 모듈에 출력합니다.
+
 ```C
 while(1)
 {         	           
@@ -47,32 +50,6 @@ while(1)
     LcdMove(1,0);
     LcdPuts(string2); 
 }
-```
-<br/>
-
-### Function
-```C
-unsigned char key_input(void)
-{
-    unsigned char in, in1;
-    in = ~KEY_IN;       // read key_code
-    
-    while(1){
-        in1 = ~KEY_IN;  // read key_code one more time
-        if (in == in1) break;
-        in = in1;
-    }
-    if(!in){            // no key
-        pin = 0;
-        return 0;
-    }
-    if (pin == in)      // same key pressed continuously
-        return 0;               
-    
-    pin = in;
-    return in;          // return key code
-}
-
 ```
 
 <br/>
@@ -109,6 +86,32 @@ ISR(ADC_vect)
     adc_data = ADCW;                                    // read 10 bit
     temperature = ((double)adc_data)/1024.0 * 100.0;    // V(IN) = ADC / 1024 * V(REF) 
     ADCSR |= 0x40;                                      // start conversion
+}
+```
+
+<br/>
+
+### Function
+```C
+unsigned char key_input(void)
+{
+    unsigned char in, in1;
+    in = ~KEY_IN;       // read key_code
+    
+    while(1){
+        in1 = ~KEY_IN;  // read key_code one more time
+        if (in == in1) break;
+        in = in1;
+    }
+    if(!in){            // no key
+        pin = 0;
+        return 0;
+    }
+    if (pin == in)      // same key pressed continuously
+        return 0;               
+    
+    pin = in;
+    return in;          // return key code
 }
 ```
 
