@@ -46,6 +46,34 @@ while(1)
     LcdMove(1,0);
     LcdPuts(string2); 
 }
+```
+<br/>
+
+### Function
+```C
+void total_days_2001(int y, int m, int d)
+{
+    totaldays = (y-2001)*365 + (y-2001)/4 - (y-2001)/100 + (y-2001)/400;  
+    if(((y%4==0) && (y%100!=0)) || (y%400==0)) monthdays[1]=29;          
+    while (m > 0){
+        totaldays += monthdays[m-1];
+        m--;
+    }
+    totaldays += d;
+    week = totaldays % 7;
+}
+
+```
+
+<br/>
+
+```C
+
+```
+
+<br/>
+
+```C
 
 ```
 
