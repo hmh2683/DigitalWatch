@@ -17,10 +17,10 @@
 <br/> <br/>
 
 ## Pinout Configuration
-* LED -> PA0~PA7 : LED1~LED7
-* LCD -> PC0 : RS, PC1 : RW, PC2 : EN, PC4 ~ PC7 : D4 ~ D7
+* LED -> PA0-PA7 : LED1-LED7
+* LCD -> PC0 : RS, PC1 : RW, PC2 : EN, PC4-PC7 : D4-D7
 * BUZZER -> PD0 : BUZZER
-* SW -> PB0~PB3 : SW1~SW4 
+* SW -> PB0-PB3 : SW1-SW4 
 
 <br/> <br/>
 
