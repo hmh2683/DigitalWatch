@@ -54,6 +54,33 @@ while(1)
 
 <br/>
 
+### Function
+* 키가 연속적으로 입력되는 것을 방지합니다. 
+```C
+unsigned char key_input(void)
+{
+    unsigned char in, in1;
+    in = ~KEY_IN;       // read key_code
+    
+    while(1){
+        in1 = ~KEY_IN;  // read key_code one more time
+        if (in == in1) break;
+        in = in1;
+    }
+    if(!in){            // no key
+        pin = 0;
+        return 0;
+    }
+    if (pin == in)      // same key pressed continuously
+        return 0;               
+    
+    pin = in;
+    return in;          // return key code
+}
+```
+
+<br/>
+
 ### Interrupt
 * 타이머 설정을 통해 1초에 1번 인터럽트가 발생합니다.
 ```C
@@ -86,33 +113,6 @@ ISR(ADC_vect)
     adc_data = ADCW;                                    // read 10 bit
     temperature = ((double)adc_data)/1024.0 * 100.0;    // V(IN) = ADC / 1024 * V(REF) 
     ADCSR |= 0x40;                                      // start conversion
-}
-```
-
-<br/>
-
-### Function
-*
-```C
-unsigned char key_input(void)
-{
-    unsigned char in, in1;
-    in = ~KEY_IN;       // read key_code
-    
-    while(1){
-        in1 = ~KEY_IN;  // read key_code one more time
-        if (in == in1) break;
-        in = in1;
-    }
-    if(!in){            // no key
-        pin = 0;
-        return 0;
-    }
-    if (pin == in)      // same key pressed continuously
-        return 0;               
-    
-    pin = in;
-    return in;          // return key code
 }
 ```
 
