@@ -55,16 +55,16 @@ while(1)
 <br/>
 
 ### Interrupt
-* Timer
+* 타이머 설정을 통해 1초에 1번 인터럽트가 발생합니다.
 ```C
 ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 
 TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
 TCNT0 = 0;                                  // count 256
-TIMSK = (0<<OCIE0) | (1<<TOIE0);            // OCIE0 : disable (comparison match intterupt), TOTE0 : enable 
+TIMSK = (0<<OCIE0) | (1<<TOIE0);            // enable overflow interrupt
 
 ISR(TIMER0_OVF_vect) 
 {            
-    TCNT0 = 0;                                  // 1 interrupt for 1 sec (128/32768 x 256 = 1)
+    TCNT0 = 0;                              // 1 interrupt for 1 sec (128/32768 x 256 = 1)
     if (start_stop == 1) stop_total_sec++;     
     if (set_time == 1) {                     
         watch_total_sec++;        
@@ -76,7 +76,7 @@ ISR(TIMER0_OVF_vect)
 
 <br/>
 
-* ADC
+* ADC 결과를 ADCW(10bit)에 저장하고, 해당 값을 보기 쉬운 데이터(온도)로 변환합니다. (Vcc-AREF 연결)
 ```C
 ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
 ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
@@ -92,6 +92,7 @@ ISR(ADC_vect)
 <br/>
 
 ### Function
+*
 ```C
 unsigned char key_input(void)
 {
