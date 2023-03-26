@@ -285,11 +285,12 @@ uint8_t OneWire_ReadBit(OneWire_t *OneWireStruct)
 
 ## Result
 ### Photo
-<a href="#"><img src="https://github.com/hmh2683/HeatingSystem/blob/main/image/result.png" width="500px" height="400px"></a>
-<a href="#"><img src="https://github.com/hmh2683/HeatingSystem/blob/main/image/uart.png" width="500px" height="400px"></a>
-
-### Video
-[![Heating System](http://img.youtube.com/vi/CozpDULafgo/0.jpg)](https://youtu.be/CozpDULafgo?t=0s) 
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/setdate.png" width="500px" height="400px"></a>
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/settime.png" width="500px" height="400px"></a>
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/datetime.png" width="500px" height="400px"></a>
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/temptime.png" width="500px" height="400px"></a>
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/start.png" width="500px" height="400px"></a>
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/stop.png" width="500px" height="400px"></a>
 
 <br/> <br/>
 
