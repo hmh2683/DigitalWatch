@@ -51,38 +51,35 @@ while(1)
 
 ### Function
 ```C
-void total_days_2001(int y, int m, int d)
+unsigned char key_input(void)
 {
-    totaldays = (y-2001)*365 + (y-2001)/4 - (y-2001)/100 + (y-2001)/400;  
-    if(((y%4==0) && (y%100!=0)) || (y%400==0)) monthdays[1]=29;          
-    while (m > 0){
-        totaldays += monthdays[m-1];
-        m--;
+    unsigned char in, in1;
+    in = ~KEY_IN;       // read key_code
+    
+    while(1){
+        in1 = ~KEY_IN;  // read key_code one more time
+        if (in == in1) break;
+        in = in1;
     }
-    totaldays += d;
-    week = totaldays % 7;
+    if(!in){            // no key
+        pin = 0;
+        return 0;
+    }
+    if (pin == in)      // same key pressed continuously
+        return 0;               
+    
+    pin = in;
+    return in;          // return key code
 }
 
 ```
 
 <br/>
 
-```C
-
-```
-
-<br/>
-
-```C
-
-```
-
-<br/>
-
 ### Interrupt
-* TIMER
+* Timer
 ```C
-ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 사용(외부클럭)
+ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 
 TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
 TCNT0 = 0;                                  // count 256
 TIMSK = (0<<OCIE0) | (1<<TOIE0);            // OCIE0 : disable (comparison match intterupt), TOTE0 : enable 
