@@ -29,7 +29,8 @@
 
 ## Code Review
 ### Main
-* 
+* ADC Interrupt를 통해 온도값을 얻습니다.
+* key_input() 함수에서 스위치 값을 얻고
 ```C
 while(1)
 {         	           
@@ -39,7 +40,7 @@ while(1)
     switch(sw_number) { total_days_2001(year, month, day); }
     
     if (mode == 0 || mode == 1 || mode == 2 || mode == 3) { itotal_days_2001(totaldays); }
-    else { } //stopwatch
+    else { } 
     
     LcdMove(0,0);
     LcdPuts(string1);          
@@ -83,11 +84,12 @@ ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz)
 TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
 TCNT0 = 0;                                  // count 256
 TIMSK = (0<<OCIE0) | (1<<TOIE0);            // OCIE0 : disable (comparison match intterupt), TOTE0 : enable 
+
 ISR(TIMER0_OVF_vect) 
 {            
     TCNT0 = 0;                                  // 1 interrupt for 1 sec (128/32768 x 256 = 1)
-    if (start_stop == 1) stop_total_sec++;      // stopwatch go  
-    if (set_time == 1) {                        // watch go
+    if (start_stop == 1) stop_total_sec++;     
+    if (set_time == 1) {                     
         watch_total_sec++;        
         if (watch_total_sec >= 86400)      
             watch_total_sec = 0;
@@ -101,6 +103,7 @@ ISR(TIMER0_OVF_vect)
 ```C
 ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
 ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
+
 ISR(ADC_vect)
 {
     adc_data = ADCW;                                    // read 10 bit
