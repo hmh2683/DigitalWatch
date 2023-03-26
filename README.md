@@ -4,6 +4,9 @@
 * 개발 환경 : AVR Studio 4 (Win AVR Compiler)
 * 개발 언어 : C
 * 개발 목표  
+  * SET DATE 및 SET TIME 모드에서 SW3, SW2, SW1을 이용하여 연/월/일, 시:분:초를 설정합니다.  
+  * SW4를 이용하여 모드를 전환하고, LCD에서 날짜, 시간, 온도를 표시합니다.
+  * STOPWATCH 모드에서 SW1을 누르면 카운트를 시작 및 중지하고, SW2를 누르면 초기화합니다.
 
 <br/> <br/>
 
