@@ -17,25 +17,16 @@
 <br/> <br/>
 
 ## Pinout Configuration
-### System Core
-* GPIO -> INPUT -> UP_BUTTON, SET_BUTTON, DOWN_BUTTON, START_SW
-* GPIO -> OUTPUT -> TEMP_DATA, RELAY, BUTTON_LED, START_LED, FND_RCLK
-
-* TIM0 -> TEMPSENSOR
-  * Prescaler : 71
-  * Counter Period : 65535
-* TIM3 -> FND
-  * Prescaler : 71
-  * Counter Period : 99
+* LED -> PA0~PA7 : LED1~LED7
+* LCD -> PC0 : RS, PC1 : RW, PC2 : EN, PC4 ~ PC7 : D4 ~ D7
+* BUZZER -> PD0 : BUZZER
+* SW -> PB0~PB3 : SW1~SW4 
 
 <br/> <br/>
 
 ## Code Review
 ### Main
-* SelectButton 함수에서 버튼 입력에 대한 OLED, LED, USART 를 제어합니다. 
-* 온도 변환 상태를 확인하고 현재온도를 반환합니다. 
-* 스위치가 ON 이라면, Relay는 GetTemp 함수의 반환 값과 SelectButton 함수 내 전역 변수값을 비교하며 작동합니다. 
-* 스위치가 OFF 라면, Relay는 값에 상관없이 작동하지 않습니다.
+* 
 ```C
 float temperature = 0.0;
 while (1)
@@ -57,30 +48,37 @@ while (1)
 <br/>
 
 ### Interrupt
-* 다수의 입력을 방지하기 위해 HAL_GetTick 함수를 사용하고 CLICK_TIME을 200으로 설정하며 0.2s 마다 실행합니다. (1 Tick = 1ms)
+* TIMER
 ```C
-void EXTI0_IRQHandler(void) 
-{
-  HAL_GPIO_EXTI_IRQHandler(PB0_TEMP_UP_BUTTON_Pin);
-
-	if (HAL_GetTick() - before_time > CLICK_TIME) 
-		button_up = 1;
-	
-	before_time = HAL_GetTick();
+/* Timer setup */
+    ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 사용(외부클럭)
+    TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
+    TCNT0 = 0;                                  // count 256
+    TIMSK = (0<<OCIE0) | (1<<TOIE0);            // OCIE0 : disable (comparison match intterupt), TOTE0 : enable (overflow interrupt)
+ISR(TIMER0_OVF_vect) 
+{            
+    TCNT0 = 0;                                  // 1 interrupt for 1 sec (128/32768 x 256 = 1)
+    if (start_stop == 1) stop_total_sec++;      // stopwatch go  
+    if (set_time == 1) {                        // watch go
+        watch_total_sec++;        
+        if (watch_total_sec >= 86400)      
+            watch_total_sec = 0;
+    }
 }
 ```
 
 <br/>
 
-* TIM3 prescaler: 72, period: 100으로 설정하여 100us 마다 Timer를 실행합니다. ((72 / 72M) * 100 = 100u)
-* 센서 초기화 상태와 OneWire 실행 상태를 확인하고 참이라면 현재온도를 FND에 표시합니다.
+* ADC
 ```C
-void TIM3_IRQHandler(void)
+/* ADC setup */
+    ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
+    ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
+ISR(ADC_vect)
 {
-  HAL_TIM_IRQHandler(&htim3);
-  
-  if (GetSensorInitState() && !GetBusy())
-	DisplayTemp((int)GetCurrentTemp() * 10);
+    adc_data = ADCW;                                    // read 10 bit
+    temperature = ((double)adc_data)/1024.0 * 100.0;    // V(IN) = ADC / 1024 * V(REF) 
+    ADCSR |= 0x40;                                      // start conversion
 }
 ```
 
