@@ -1,4 +1,4 @@
-# DigitalWatch
+# Digital Watch
 * 개발 기간 : 2020.09 ~ 2020.11  
 * 개발 인원 : 2 
 * 개발 환경 : AVR Studio 4 (Win AVR Compiler)
