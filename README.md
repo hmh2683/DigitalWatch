@@ -17,45 +17,16 @@
 <br/> <br/>
 
 ## Pinout Configuration
-
-
 ### System Core
 * GPIO -> INPUT -> UP_BUTTON, SET_BUTTON, DOWN_BUTTON, START_SW
 * GPIO -> OUTPUT -> TEMP_DATA, RELAY, BUTTON_LED, START_LED, FND_RCLK
-* SPI -> FND_SCLK, FND_DIO
-* I2C -> I2C2_SCL, I2C2_SDA
-* SYS -> JTMS-SWDIO, SYS_JTCK-SWCLK
-* RCC -> RCC_OSC32_IN, RCC_OSC32_OUT, RCC_OSC_IN, RCC_OSC_OUT
 
-### Timers
-* TIM2 -> TEMPSENSOR
+* TIM0 -> TEMPSENSOR
   * Prescaler : 71
   * Counter Period : 65535
 * TIM3 -> FND
   * Prescaler : 71
   * Counter Period : 99
-
-### Connectivity
-* SPI2 -> FND
-  * Data Size : 8bit
-  * First Bit : MSB
-  * Prescaler : 16
-  * Clock Polarity : High
-  * Clock Phase : 1 Edge
-* I2C2 -> OLED
-  * Speed Mode : Fast Mode
-  * Clock Speed : 400000 Hz
-  * Fast Mode Duty Cycle : Duty cycle Tlow/Thigh = 2
-* USART1 -> FTDI
-  * Baud Rate : 115200 Bits/s
-  * Word Length : 8 Bit
-* ONEWIRE -> SENSOR
-
-<br/> <br/>
-
-## Clock Configuration
-* STM32 MCU의 수정 발진기를 사용하여 72 MHz의 클럭 주파수를 생성합니다.
-<a href="#"><img src="https://github.com/hmh2683/HeatingSystem/blob/main/image/clock.png" width="1000px" height="400px"></a> 
 
 <br/> <br/>
 
