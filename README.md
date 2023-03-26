@@ -31,21 +31,22 @@
 ### Main
 * 
 ```C
-float temperature = 0.0;
-while (1)
-{
-	SelectButton();
+while(1)
+{         	           
+    itemp = (int)(temperature * 10.0 + 0.5);                    
 
-	if (!GetConvertState())
-		StartConverting();
-	CheckConverting();
-
-	if (!GetConvertState()) // 온도변환 완료 시
-	{
-		temperature = GetTemp();
-		CheckSwitch((int)temperature);
-	}
+    sw_number = key_input();       
+    switch(sw_number) { total_days_2001(year, month, day); }
+    
+    if (mode == 0 || mode == 1 || mode == 2 || mode == 3) { itotal_days_2001(totaldays); }
+    else { } //stopwatch
+    
+    LcdMove(0,0);
+    LcdPuts(string1);          
+    LcdMove(1,0);
+    LcdPuts(string2); 
 }
+
 ```
 
 <br/>
@@ -53,11 +54,10 @@ while (1)
 ### Interrupt
 * TIMER
 ```C
-/* Timer setup */
-    ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 사용(외부클럭)
-    TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
-    TCNT0 = 0;                                  // count 256
-    TIMSK = (0<<OCIE0) | (1<<TOIE0);            // OCIE0 : disable (comparison match intterupt), TOTE0 : enable (overflow interrupt)
+ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 사용(외부클럭)
+TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
+TCNT0 = 0;                                  // count 256
+TIMSK = (0<<OCIE0) | (1<<TOIE0);            // OCIE0 : disable (comparison match intterupt), TOTE0 : enable 
 ISR(TIMER0_OVF_vect) 
 {            
     TCNT0 = 0;                                  // 1 interrupt for 1 sec (128/32768 x 256 = 1)
@@ -74,9 +74,8 @@ ISR(TIMER0_OVF_vect)
 
 * ADC
 ```C
-/* ADC setup */
-    ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
-    ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
+ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
+ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
 ISR(ADC_vect)
 {
     adc_data = ADCW;                                    // read 10 bit
