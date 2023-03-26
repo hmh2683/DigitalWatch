@@ -32,7 +32,7 @@
 * 스위치에 따라 연/월/일, 시:분:초를 증가시키고, 경과일(totaldays)과 경과시간(total_sec)을 반환합니다.  
 * 경과일과 경과시간에서 연/월/일, 요일, 시:분:초 데이터를 추출합니다 
 * 모드 상태에 따라 연/월/일, 요일, 시:분:초, 온도 등을 string1, string2 배열 안에 저장합니다.
-* lcd.h 포함하고 관련 함수를 사용하여 string1, string2를 LCD 모듈에 출력합니다.
+* lcd.h 포함하고 관련 함수를 사용하여 string1, string2 배열을 LCD 모듈에 출력합니다.
 
 ```C
 while(1)
@@ -40,10 +40,10 @@ while(1)
     itemp = (int)(temperature * 10.0 + 0.5);                    
 
     sw_number = key_input();       
-    switch(sw_number) { total_days_2001(year, month, day); }
+    switch(sw_number) { total_days_2001(year, month, day); } 
     
-    if (mode == 0 || mode == 1 || mode == 2 || mode == 3) { itotal_days_2001(totaldays); }
-    else { } 
+    if (mode == 0 || mode == 1 || mode == 2 || mode == 3) { itotal_days_2001(totaldays); } // watch
+    else { } // stopwatch
     
     LcdMove(0,0);
     LcdPuts(string1);          
