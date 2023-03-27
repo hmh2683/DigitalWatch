@@ -28,8 +28,6 @@
 * (Buzzer) PD0 : BUZZER
 * (Sensor) PF3 : ADC3(LM35DZ), VCC : AREF
 
-<br/>
-
 ### Interrupt
 * TIMER
   * Clock : 32.768 KHz
