@@ -25,6 +25,12 @@
 * BUZZER -> PD0 : BUZZER
 * SW -> PB0-PB3 : SW1-SW4 
 
+### Timer
+*
+
+### ADC
+*
+
 <br/> <br/>
 
 ## Code Review
