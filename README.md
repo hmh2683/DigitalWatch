@@ -31,16 +31,16 @@
 <br/>
 
 ### Interrupt
-#### TIMER
-ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 
-TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
-TCNT0 = 0;                                  // count 256
-TIMSK = (0<<OCIE0) | (1<<TOIE0);            // enable overflow interrupt
-
-#### ADC
-ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
-ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
-
+* TIMER
+  * Clock : 32.768 KHz
+  * Prescaler : 1/128
+  * Count period : 256
+  * Overflow interrupt
+ 
+* ADC
+   * ADC channel : 3
+   * ADLAR : Right
+   * Prescaler : 1/64
 
 <br/> <br/>
 
