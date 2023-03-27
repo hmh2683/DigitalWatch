@@ -21,16 +21,25 @@
 
 ## Pinout Configuration
 <a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/circuit.png" width="400px" height="300px"></a> 
+### System Core
 * (LED) PA0-PA7 : LED1-LED8
 * (SW) PB0-PB7 : SW1-SW8 
 * (LCD) PC0 : RS, PC1 : RW, PC2 : EN, PC4-PC7 : D4-D7 
 * (Buzzer) PD0 : BUZZER
 * (Sensor) PF3 : ADC3(LM35DZ), VCC : AREF
 
-### Interrupt
-TIM0_
+<br/>
 
-ADC_
+### Interrupt
+#### TIMER
+ASSR |= (1<<AS0);                           // 32.768 KHz (2^15 Hz) 
+TCCR0 = (1<<CS02) | (0<<CS01) | (1<<CS00);  // prescale = 1/128
+TCNT0 = 0;                                  // count 256
+TIMSK = (0<<OCIE0) | (1<<TOIE0);            // enable overflow interrupt
+
+#### ADC
+ADMUX = 0x03;        // AREF, right adjust, ADC channel 3
+ADCSR = 0xCE;        // enable, start conversion, interrupt enable, 1/64 
 
 
 <br/> <br/>
