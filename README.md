@@ -20,7 +20,7 @@
 <br/> <br/>
 
 ## Pinout Configuration
-<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/ci.png" width="400px" height="300px"></a> 
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/circuit.png" width="400px" height="300px"></a> 
 * LED -> PA0-PA7 : LED1-LED7
 * SW -> PB0-PB3 : SW1-SW4 
 * LCD -> PC0 : RS, PC1 : RW, PC2 : EN, PC4-PC7 : D4-D7 
