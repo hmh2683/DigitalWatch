@@ -19,9 +19,9 @@
 
 <br/> <br/>
 
-## Pinout configuration
+## Pinout Configuration
 <a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/circuit.png" width="500px" height="400px"></a> 
-### System core
+### System Core
 * (LED) PA0-PA7 : LED1-LED8
 * (SW) PB0-PB7 : SW1-SW8 
 * (LCD) PC0 : RS, PC1 : RW, PC2 : EN, PC4-PC7 : D4-D7 
@@ -42,7 +42,7 @@
 
 <br/> <br/>
 
-## Code review
+## Code Review
 ### Main
 * 스위치에 따라 연/월/일, 시:분:초를 증가시키고, 경과일(totaldays)과 경과시간(total_sec)을 반환합니다.  
 * 경과일과 경과시간에서 연/월/일, 요일, 시:분:초 데이터를 추출합니다 
