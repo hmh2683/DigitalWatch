@@ -25,11 +25,11 @@
 * BUZZER -> PD0 : BUZZER
 * SW -> PB0-PB3 : SW1-SW4 
 
-### Timer
-*
+### Interrupt
+TIM0_
 
-### ADC
-*
+ADC_
+
 
 <br/> <br/>
 
