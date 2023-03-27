@@ -1,4 +1,4 @@
-# Digital Watch
+# Digital watch
 * 개발 기간 : 2020.09 ~ 2020.11  
 * 개발 인원 : 2 명
 * 개발 환경 : AVR Studio 4 (Win AVR Compiler)
@@ -19,9 +19,9 @@
 
 <br/> <br/>
 
-## Pinout Configuration
+## Pinout configuration
 <a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/circuit.png" width="400px" height="300px"></a> 
-### System Core
+### System core
 * (LED) PA0-PA7 : LED1-LED8
 * (SW) PB0-PB7 : SW1-SW8 
 * (LCD) PC0 : RS, PC1 : RW, PC2 : EN, PC4-PC7 : D4-D7 
@@ -44,7 +44,7 @@
 
 <br/> <br/>
 
-## Code Review
+## Code review
 ### Main
 * 스위치에 따라 연/월/일, 시:분:초를 증가시키고, 경과일(totaldays)과 경과시간(total_sec)을 반환합니다.  
 * 경과일과 경과시간에서 연/월/일, 요일, 시:분:초 데이터를 추출합니다 
