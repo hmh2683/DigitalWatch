@@ -11,7 +11,7 @@
 <br/> <br/>
 
 ## Microcontroller
-<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/mcu.png" width="400px" height="300px"></a> 
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/mcu.png" width="500px" height="400px"></a> 
 * Board : M128RS1
 * Core : AVR ATmega128 
 * Clock : 16MHz
@@ -20,7 +20,7 @@
 <br/> <br/>
 
 ## Pinout configuration
-<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/circuit.png" width="400px" height="300px"></a> 
+<a href="#"><img src="https://github.com/hmh2683/DigitalWatch/blob/main/image/circuit.png" width="500px" height="400px"></a> 
 ### System core
 * (LED) PA0-PA7 : LED1-LED8
 * (SW) PB0-PB7 : SW1-SW8 
